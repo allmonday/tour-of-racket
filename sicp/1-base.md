@@ -19,9 +19,9 @@
       (sqrt-iter (improve guess x)
                  x)))
 
-(define (sqrt x) 
+(define (new-sqrt x) 
   (sqrt-iter 1.0 x))
 
-(sqrt 9)
+(new-sqrt 9)
 
 ```
