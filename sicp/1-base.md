@@ -3,6 +3,8 @@
 ```racket
 #lang racket
 
+;;; 牛顿迭代法
+
 (define (square x) (* x x))
 
 (define (good-enough? guess x) 
