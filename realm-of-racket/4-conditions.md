@@ -91,3 +91,49 @@ if 后跟的表达式不会被预先 evaluate
 ```
 
 ### cond
+
+```racket
+(cond [(= x 7) 5]
+        [(odd? x) 'odd-number]
+        [else 'even-number])
+;;; => 5
+```
+
+
+### recursion
+
+```racket
+(define (my-length a-list)
+  (if (empty? a-list)
+      0
+      (add1 (my-length (rest a-list)))))
+  
+(my-length '(list of fou symbols))
+```
+
+### tricks with cond
+
+```racket
+(and #t #f #f)
+(or #t #f #f)
+
+
+(define is-it-even #f)
+(or (odd? 5) (set! is-it-even #t))
+(and (even? x) (set! is-it-even #t))
+
+
+;;; usual way
+(if file-modified
+    (if (ask-user-about-saving)
+        (save-file)
+        false)
+    false)
+
+;;; concise way
+(and file-modified (ask-user-about-saving) (save-file))
+
+;;; another
+(when (and file-modified (ask-user-about-saving))
+    (save-file))
+```
