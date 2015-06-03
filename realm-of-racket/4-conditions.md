@@ -136,4 +136,62 @@ if 后跟的表达式不会被预先 evaluate
 ;;; another
 (when (and file-modified (ask-user-about-saving))
     (save-file))
+
+(define tasks '(1 clean 3 homework 4 party))
+(member 3 tasks)
+;;; => '(3 homework 4 party)
+
 ```
+
+### Equality
+
+```racket
+(struct point (x y) #:transparent)
+(define (distance-to-origin p)
+  (sqrt (+ (sqr (point-x p)) (sqr (point-y p)))))
+(distance-to-origin (point 3 4))
+;;; => 5
+
+(define pt1 (point 1 2))
+(define pt2 (point 1 2))
+(equal? pt1 pt2)
+;;; => #t  比较每一个元素, 比较值
+
+(eq? pt1 pt2)
+;;; => #f
+(eq? pt1 pt1)
+;;; => #t  比较引用
+```
+
+### test
+
+```racket
+(require rackunit)
+(check-equal? (add1 5) 7)
+```
+output
+```
+--------------------
+FAILURE
+actual:     6
+expected:   7
+name:       check-equal?
+location:   (unsaved-editor1936 3 0 33 25)
+expression: (check-equal? (add1 5) 7)
+```
+
+```racket
+;;; with message
+(check-equal? 5 6 "NUMBERS MATTER!")
+```
+
+- `check-not-equal`
+- `check-pred`
+  ```racket
+  (define number 4)
+  (check-pred number? 4)
+  ```
+- `check-=`  within certain range
+- `check-true`
+- `check-false`
+- `check-not-false`
